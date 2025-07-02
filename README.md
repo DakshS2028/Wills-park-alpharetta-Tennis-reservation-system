@@ -2,7 +2,7 @@
 
 A comprehensive tennis court reservation system for the City of Alpharetta's Wills Park facility. This full-stack application allows users to book tennis courts, view availability, manage reservations, and includes administrative features.
 
-## 🎾 Features
+## Features
 
 ### User Features
 - **Authentication System**: Secure user login with JWT tokens
@@ -19,7 +19,7 @@ A comprehensive tennis court reservation system for the City of Alpharetta's Wil
 - **Notification System**: Send system-wide notifications to users
 - **Comprehensive Reports**: Detailed analytics and reporting
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Frontend**: React 19, Tailwind CSS, Craco
 - **Backend**: FastAPI, Python 3.11
@@ -28,89 +28,99 @@ A comprehensive tennis court reservation system for the City of Alpharetta's Wil
 - **Payment Processing**: Stripe integration (demo mode)
 - **Process Management**: Supervisor
 
-## 📋 Prerequisites
 
-- Python 3.11+
-- Node.js 18+
-- MongoDB
-- Yarn package manager
+## Prerequisites
 
-## 🚀 Local Development Setup
+### For Mac Users
+•⁠  ⁠*Homebrew*: Install from https://brew.sh
 
-### 1. Clone and Navigate
+•⁠  ⁠*Python 3.11+*: ⁠ 
+```
+brew install python@3.11 ⁠
+```
+•⁠  ⁠*Node.js 18+*: ⁠ 
+```
+brew install node ⁠
+```
+•⁠  ⁠*MongoDB*: ⁠ 
+```
+brew tap mongodb/brew && brew install mongodb-community ⁠
+```
+•⁠  ⁠*Yarn*: ⁠ 
+```
+brew install yarn ⁠
+```
+# Mac Development Setup
+
+# 1. Clone and Navigate
 ```bash
 git clone [repository-url]
 cd /app
 ```
+# 2. Install Dependencies (Do the prerequisites section)
+⁠ 
+### Install Homebrew (if not already installed)
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+### Install required packages
+```
+brew install python@3.11 node yarn
+brew tap mongodb/brew && brew install mongodb-community
+```
 
-### 2. Backend Setup
-```bash
-# Navigate to backend directory
+# 3.⁠ ⁠Setup Project
+⁠
+## 1. Navigate to the project in your files
+```
+cd /app
+```
+## 2. Navigate to the Backend and install backend dependencies 
+```
 cd backend
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Verify environment variables
-cat .env
-# Should show:
-# MONGO_URL=mongodb://localhost:27017/
-# STRIPE_SECRET_KEY=sk_test_...
-# STRIPE_WEBHOOK_SECRET=whsec_...
+```
+## 3. To install backend dependencies, try one of these commands (in order of preference):
+```
+pip3 install -r requirements.txt
+```
+### OR if pip3 doesn't work:
+```
+python3 -m pip install -r requirements.txt
+```
+### OR if you have brew python:
+```
+/usr/local/bin/python3 -m pip install -r requirements.txt
 ```
 
-### 3. Frontend Setup
-```bash
-# Navigate to frontend directory
-cd ../frontend
-
-# Install dependencies using Yarn (IMPORTANT: Do not use npm)
-yarn install
-
-# Verify environment variables
-cat .env
-# Should show:
-# REACT_APP_BACKEND_URL=https://[your-backend-url]
-# WDS_SOCKET_PORT=443
+## 4. Install frontend dependencies  
 ```
-
-### 4. Start Services
-
-#### Option A: Using Supervisor (Recommended)
-```bash
-# Start all services
-sudo supervisorctl start all
-
-# Check status
-sudo supervisorctl status
-
-# Expected output:
-# backend                          RUNNING   pid [number]
-# frontend                         RUNNING   pid [number]
-# mongodb                          RUNNING   pid [number]
+cd ../frontend && yarn install
 ```
+ ⁠
 
-#### Option B: Manual Start (Development)
-```bash
-# Terminal 1: Start MongoDB (if not using supervisor)
-mongod
+# 4.⁠ Start Services in 3 Terminal Windows
 
-# Terminal 2: Start Backend
-cd /app/backend
-python server.py
-
-# Terminal 3: Start Frontend
-cd /app/frontend
-yarn start
+## Terminal 1: MongoDB
 ```
-
-### 5. Access the Application
+brew services start mongodb/brew/mongodb-community
+```
+## Terminal 2: Backend API
+```
+cd /app/backend && python3 server.py
+```
+## Terminal 3: Frontend App
+```
+cd /app/frontend && yarn start
+```
+# 5. Access the Application
+```
 
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8001
 - **API Documentation**: http://localhost:8001/docs
+```
 
-## 🔧 Service Management
+## Service Management
 
 ### Supervisor Commands
 ```bash
@@ -132,19 +142,8 @@ tail -f /var/log/supervisor/backend.err.log
 tail -f /var/log/supervisor/frontend.err.log
 ```
 
-## 👥 Test Accounts
 
-### Regular User
-- **Username**: `membermock`
-- **Password**: `trial123`
-- **Status**: Resident member
-
-### Admin/Staff User
-- **Username**: `AlpharettaStaff1122`
-- **Password**: `JVtt3MfdJLGv6Qv0MUC3`
-- **Status**: Staff member with admin privileges
-
-## 🧪 Testing the Application
+##  Testing the Application
 
 ### 1. Frontend-Backend Communication Test
 ```bash
@@ -186,7 +185,7 @@ curl -X POST http://localhost:8001/api/auth/login \
 - **Authentication**: JWT-based authentication system
 - **Payment**: Stripe integration for payment processing
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### Public Endpoints
 - `POST /api/auth/login` - User authentication
@@ -204,7 +203,7 @@ curl -X POST http://localhost:8001/api/auth/login \
 - `GET /api/admin/analytics` - System analytics
 - `POST /api/admin/notifications` - Send notifications
 
-## 🔒 Environment Variables
+## Environment Variables
 
 ### Backend (.env)
 ```env
@@ -219,7 +218,7 @@ REACT_APP_BACKEND_URL=https://[your-backend-url]
 WDS_SOCKET_PORT=443
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -258,7 +257,7 @@ sudo supervisorctl status mongodb
 mongo --eval "db.adminCommand('ismaster')"
 ```
 
-## 🔄 Development Workflow
+## Development Workflow
 
 ### Making Changes
 
@@ -293,10 +292,10 @@ yarn add [package-name]
 # Automatically updates package.json
 ```
 
-## 📱 Production Considerations
+## Production Considerations
 
 ### Security
-- Change default JWT secret in production
+- Change the default JWT secret in production
 - Use environment-specific Stripe keys
 - Implement proper HTTPS
 - Secure MongoDB with authentication
@@ -305,7 +304,7 @@ yarn add [package-name]
 - Implement database indexing
 - Add caching layer (Redis)
 - Optimize React bundle size
-- Use production-grade WSGI server
+- Use a production-grade WSGI server
 
 ### Monitoring
 - Set up logging aggregation
@@ -313,7 +312,7 @@ yarn add [package-name]
 - Track user activities
 - Set up alerting for critical errors
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -321,17 +320,12 @@ yarn add [package-name]
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
+##  License
 
-This project is developed for the City of Alpharetta's tennis court management system.
+This project is developed for the City of Alpharetta's tennis court management system by Daksh Shah
 
-## 📞 Support
 
-For technical support or questions:
-- Email: athleticprograms@alpharetta.ga.us
-- Phone: Check City of Alpharetta website for current contact information
 
----
 
 **Last Updated**: July 2025
 **Version**: 1.0.0

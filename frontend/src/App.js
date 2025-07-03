@@ -1529,7 +1529,7 @@ function App() {
                     <p className="text-sm text-blue-600">Per reservation</p>
                   </div>
                   <div className="bg-purple-50 rounded-lg p-4">
-                    <h3 className="font-semibold text-purple-900 mb-2">Conversion Rate</h3>
+                    <h3 className="font-semibold text-purple-900 mb-2">Confirmation Rate</h3>
                     <p className="text-2xl font-bold text-purple-700">
                       {analytics.total_reservations > 0 ? 
                         Math.round((analytics.confirmed_reservations / analytics.total_reservations) * 100) : 
